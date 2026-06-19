@@ -1,0 +1,189 @@
+
+# PSDE - Configure Cross-Tenant Access Settings In Microsoft Entra
+#### [Made by Joanna Zibbell with Scribe](https://scribehow.com/o/3rgKI9W4TF-GdZqMRM28tA/viewer/PSDE_-_Configure_Cross-Tenant_Access_Settings_In_Microsoft_Entra__JmKO_w-PQCmT0Uv3rL6k3A)
+How to configure cross-tenant synchronization between an agency tenant and the PSDE Workforce tenant so agency-managed users and groups can automatically receive access to shared Microsoft Fabric resources.
+
+Tip: Cross-tenant synchronization is not required to for PSDE participation. Up to 10 users, agencies can use manual B2B onboarding.
+
+
+#### Target & Source Tenant: Set Up Cross-tenant access settings
+
+
+Tip: Both the source and the target tenants need to complete this section.
+
+WFCA = Target Tenant
+
+PSDE Agency = Source Tenant
+
+
+1\. Navigate to [https://entra.microsoft.com/](https://entra.microsoft.com/?utm_source=chatgpt.com#view/Microsoft_AAD_IAM/GroupsManagementMenuBlade/~/Overview/menuId/Overview)
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-26/79b11e62-303d-42bd-aa6f-3a59d024dd4e/ascreenshot_45c09fda75ca47ba8212df1a15aa38e3_text_export.jpeg)
+
+
+2\. Click "External Identities" then "Cross-tenant access settings"
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-29/24d040af-4f5f-4a77-a803-dc018ecace63/user_cropped_screenshot_0b4c5ae3d44c4b39b2836aab59feedd9_text_export.jpeg)
+
+
+3\. Click "Add organization"
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-27/b690d3df-942c-42df-86d5-1999082d4488/ascreenshot_bf18baef4867479bbb4c7b4983f1e463_text_export.jpeg)
+
+
+4\. PSDE Agency search for[wfca.com](https://wfca.com) and WFCA search for agency domain such as [ocfa.org](https://ocfa.org)Confirm the results and press Add.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-26/00ca3f3b-2b8d-4b48-a6ad-6a14ae527278/ascreenshot_cac7ec97f6044496ba3544e295bbee2a_text_export.jpeg)
+
+
+5\. For Source Tenants in a GCC tenant, WFCA is in a commercial tenant so both entities need to configure "Microsoft cloud settings" to allow collaboration. The GCC tenant will check "Microsoft Azure Commercial"
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-29/f44ef538-21a3-409c-a06f-9a8f6e57cc51/user_cropped_screenshot_87c25fea2f8748ceba82896e3f6bdda0_text_export.jpeg)
+
+
+#### Target Tenant: Configure Inbound Access Settings for PSDE Agency Cross Tenant Organization
+
+
+Tip: Only the target tenant (WFCA) configures Inbound Access settings.
+
+
+6\. Click "Inherited from default" under Inbound access for the added organization.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-29/c3255402-19cf-4e51-9125-5f328e012479/user_cropped_screenshot_96eca114b19141a2a9f420351debf76d_text_export.jpeg)
+
+
+7\. Within "Trust settings" click Customize and "Trust multifactor authentication for Microsoft Entra tenants" and check "Automatically redeem invitations with the tenant...".
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-29/1801dcd9-6330-4cd3-aef9-e42b78275937/user_cropped_screenshot_20be9d8ad3444827b8fec0daea949654_text_export.jpeg)
+
+
+8\. Within "Cross-tenant sync" check both boxes.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-29/4ac81c5f-a64a-4ebb-8c1e-c3033fec2521/user_cropped_screenshot_0fb5e8fc142343229cf86380af2ee87f_text_export.jpeg)
+
+
+9\. Click "Yes"
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-27/1ea56458-c576-4e2a-a936-511fd4438f38/ascreenshot_01679f70e0834d01ab3dd6a4f5036a4f_text_export.jpeg)
+
+
+#### Source Tenant: Configure Outbound Access Settings for WFCA Cross Tenant Organization
+
+
+Tip: Only the source tenant configures Outbound Access settings.
+
+
+10\. Return to "External Identities" then "Cross-tenant access settings"
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-29/24d040af-4f5f-4a77-a803-dc018ecace63/user_cropped_screenshot_49a45d0727e04badb96d8762909137bd_text_export.jpeg)
+
+
+11\. Click "Inherited from default" hyperlink under "Outbound access" for the WFCA organization.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/c5e43d30-5525-4731-87da-95d37b7c6b43/ascreenshot_70e9459dab9d4ad5bfc1c30151b515cc_text_export.jpeg)
+
+
+12\. Under Trust settings check auto redeem invitations with the tenant WFCA.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/bd113c67-bbc9-4eee-9271-1dfe8825226d/screenshot_bba602543c98457c9afb6a2f308facb9_text_export.jpeg)
+
+
+#### Source Tenant: Create PSDE Security Groups
+
+
+Tip: Add at least 3 standard groups, replace "ca_orc" with your agency [unit identifier module](https://unitid.nifc.gov/ords/prd/f?p=116:1:18386334865725:::RP::)
+
+[[psde_data_stewards\_ ext_ca_orc]]
+
+[[psde_developers_ext_ca_orc]]
+
+[[psde_consumers\_ ext_ca_orc]]
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/9c7bf70d-9574-44c5-89ec-f372c5144bc8/screenshot_480e42a355a74b3c8787b2066af38271_text_export.jpeg)
+
+
+Tip: If additional security groups are needed to delineate access to separate workspaces within an agency PSDE domain or separate objects, continue with the defined personas, but add an additional identifier at the end, e.g., psde_consumers_ext_ca_orc_leadership. Submit a ticket to WFCA to map these groups accordingly so they are available for use.
+
+
+13\. Add a New Security Group within your Entra Admin Center
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/b55be4ba-f92b-47c6-ad3c-8b4fe0e0bc76/user_cropped_screenshot_1ae1cd2ae43447af99c4bfc786fd60e6_text_export.jpeg)
+
+
+14\. Complete the following configurations and click create. Add
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-06-09/9cf44638-4948-473a-97c4-8928d3135499/user_cropped_screenshot_6bf10c3942294218b3a80696bc2bf69c_text_export.jpeg)
+
+
+15\. Add the appropriate people to the group based on definition of personas.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/3a6497f3-2fd4-4639-bb7e-639996212a0c/user_cropped_screenshot_9e51d76c9e09407c9cb18375fb62286d_text_export.jpeg)
+
+
+Alert: These psde groups should be used only for access to the WFCA psde tenant, and not used for any other purpose within your organization.
+
+
+#### Source Tenant: Create New Cross-Tenant Synchronization
+
+
+Tip: Only the source tenant creates a configuration under cross-tenant synchronization.
+
+
+16\. Create new configuration under Cross-tenant synchronization.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/3d7efb94-d414-4ab9-a272-e5a9bbf59a51/screenshot_d367af5c2321466a8b75cee4e7e89584_text_export.jpeg)
+
+
+17\. Name the configuration, suggestion "psde" and click create.
+
+Note if you are GCC you may need to check the checkbox noted below.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-29/3aa83153-ff69-4d42-8b59-5bf38cbf528d/user_cropped_screenshot_43ccf706ad524d3f8451e71f6e635204_text_export.jpeg)
+
+
+18\. Click the newly created psde configuration from the list.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-29/d148118b-e10b-449f-8ef6-b8dfa4dec89e/user_cropped_screenshot_43ca3642c165444b9d09841b4045cbef_text_export.jpeg)
+
+
+19\. Click "Provisioning"
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/a6982ff5-a354-4a32-9cc5-a4089e6aa0a9/ascreenshot_5db0a8f738ad4ea599a1d628dff7d2d1_text_export.jpeg)
+
+
+20\. Change the provisioning mode to Automatic, the authentication mode to "cross tenant synchronization policy" and enter the WFCA tenant ID = [[e32a8103-9c5e-40b5-a18a-7fd56cf981ef.]]  Test the Connection.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/bb8bfd8c-2767-425e-8f1b-4ca4c2056381/screenshot_a61100547d574325861304f9a2e5185a_text_export.jpeg)
+
+
+21\. After the test is successful, within the psde configuration, click Provisioning and toggle on "Provisioning Status" and confirm Scope = "Sync only assigned users and groups".
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-29/2d932833-ae80-4418-91de-799b1ad316ae/user_cropped_screenshot_2110416c968c44489bef381d7be16c4d_text_export.jpeg)
+
+
+22\. Go to the Users and groups page under the ‘Manage’ section of your configuration. Click +Add user/group at the top of the page. Choose the psde security groups you created.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/bce401da-54a3-47a0-844b-44549a55826e/screenshot_3b10e5ff3c1c40688d89a450a4f057e1_text_export.jpeg)
+
+
+#### Target Tenant: Add Source Tenant Groups to Appropriate Target Tenant Security Groups
+
+
+23\. Navigate to Entra ID within the Azure tenant and click Groups
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/25f7b493-4ba8-46e8-88ac-927a7747db68/ascreenshot_28a9999f2ab644f6b7bfca9f89ec7833_text_export.jpeg)
+
+
+24\. Click "psde_ca-orc_consumers", for example.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/fc135e73-0cb8-48a5-ab8f-b00f8733af44/ascreenshot_7ecc1c26b6894595b784ce3836ceea38_text_export.jpeg)
+
+
+25\. Click "Add members"
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-29/8e94a089-2165-439c-85e8-f639943afe85/user_cropped_screenshot_8afd15e8a56e4f4582707d09c6f4b625_text_export.jpeg)
+
+
+26\. Find the appropriate external group and click Select.
+
+![](https://colony-recorder.s3.amazonaws.com/files/2026-05-28/7f20a0c2-5e58-4f9f-bda1-84a1bfbc9dd8/ascreenshot_554c153c1f424af6ae3e568d5e03ce87_text_export.jpeg)
