@@ -6,4 +6,23 @@ This repository serves as the central source for PSDE governance, onboarding, se
 ## Onboarding
 
 Documentation for agencies joining and participating in the PSDE.
+
 [Browse Onboarding Documentation](./Onboarding/)
+
+## Security
+
+Documentation related to securing data, users, workspaces, and reporting assets across the PSDE platform.
+
+[Browse Security Documentation](./Security/)
+
+## DIF (Data Ingestion Framework)
+
+Documentation supporting the PSDE Data Ingestion Framework (DIF), which provides a standardized approach for onboarding and managing data sources within the exchange.
+
+[Browse DIF Documentation](./DIF/)
+
+## Fabric Admin
+
+Documentation for administration, configuration, and management of the PSDE Microsoft Fabric environment.
+
+[Browse Fabric Admin Documentation](./Fabric_Admin/)
