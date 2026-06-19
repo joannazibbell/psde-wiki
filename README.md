@@ -1,8 +1,9 @@
 # Introduction 
-This repo is dedicated to the Public Safety Data Exchange wiki...
+Welcome to the Public Safety Data Exchange (PSDE) documentation repository. The PSDE is a collaborative data-sharing and analytics platform hosted by the Western Fire Chiefs Association (WFCA) and built on Microsoft Fabric and Azure cloud services. The exchange enables agencies to securely share data, develop common reporting standards, leverage modern analytics capabilities, and collaboratively solve data integration challenges.
 
-## Wiki Pages
+This repository serves as the central source for PSDE governance, onboarding, security, platform administration, and Data Ingestion Framework (DIF) documentation.
 
-- [DIF Development Workflow (Efficient Pattern)](DIF_Development_Workflow.md)
-- [DIF Branching Strategy & Deployment Pipeline](DIF_Branching_Strategy.md)
-- [Fabric Tenant Settings Review](Fabric_Tenant_Settings_Review.md)
+## Onboarding
+
+Documentation for agencies joining and participating in the PSDE.
+[Browse Onboarding Documentation](./Onboarding/)
