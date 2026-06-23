@@ -1,6 +1,4 @@
-[[_TOC_]]
-
-#Overview
+# Overview
        
 This post explains the different governance and security levers that may need to be implemented to securely share data within Microsoft Fabric environments, particularly when working with sensitive public safety, healthcare, or operational data. Although Power BI is now part of Microsoft Fabric rather than a separate environment, report-layer (semantic model) security and backend (Fabric item, SQL analytics endpoint, and OneLake) security remain distinct planes — securing a report does not secure the underlying data, which is why each layer below must be addressed independently.
 
